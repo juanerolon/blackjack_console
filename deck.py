@@ -1,18 +1,31 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Sun Apr 28 12:55:45 2019
 
-@author: Juan E Rolon
-       : rolon.math@gmail.com
+"""
+@Juan E. Rolon
+https://github.com/juanerolon
 """
 
 import random
 
    
 class Deck:
+    """
+    Defines a 52-card playing deck for use in card games like Blackjack.
+    Contains methods creating the deck representation, how cards are drawn
+    and randomly shuffled.
+    """
     
     def __init__(self):
+        """
+        Initializes private attributes:
+        cardIndex: a list of integers representing each element on the deck.
+        The list of integers get randomly shuffled upon calls to shuffle method.
+        counter: counts the cards being drawn.
+        drawnCards: a list that stores the cards being drawn.
+        cards: a dictionary whose keys are integers and values are 3-element lists
+        representing a card.
+        """
     
         self.__cardIndex = []
         self.__counter = 0
@@ -32,6 +45,14 @@ class Deck:
         self.create_deck()
 
     def create_deck(self):
+        """
+        Creates each one of the key-value pairs of the cards dictionary.
+        Keys are integers and values are the list representation of cards.
+        card[n] = ["Short name (str value)", "Description suit symbol", Numeric value]
+        Note: the description of each card contains a unicode symbol that
+        yields the symbol for each suit (Tested on Unix and OS X)
+        :return: None
+        """
       
         self.__cards[1] = ["Ace", u"Ace of Clubs \u2667", 11]
         self.__cards[2] = ["2", u"Two of Clubs  \u2667",2]
@@ -98,6 +119,11 @@ class Deck:
         self.__cards[52] = ["Queen", u"Queen of Spades \u2664",10]
         
     def draw_card(self):
+        """
+        Draws a card from deck; after card return an element is
+        removed from the dictionary of cards
+        :return: card
+        """
         num = self.__cardIndex[self.__counter]
         card = self.__cards[num]
         del self.__cards[num]
@@ -105,9 +131,17 @@ class Deck:
         return card
     
     def getCards_count(self):
+        """
+        :return: Number of elements in cards dictionary
+        """
         return len(self.__cards)
     
     def shuffle(self):
+        """
+        Reshufles the indexes or integer keys of the list storing the cards
+        After reshufling we recreate the deck with a new random rearrangment of the keys.
+        :return: None
+        """
         self.__counter = 0
         random.shuffle(self.__cardIndex)
         self.create_deck()

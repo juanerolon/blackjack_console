@@ -1,14 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Sun Apr 28 14:39:41 2019
-
-@author: juanerolon
+@Juan E. Rolon
+https://github.com/juanerolon
 """
 import os
 
 
 def disp_header():
+    """
+    Prints header at game/progam intialization. The header contains unicode
+    symbols intended to represent playing card suit symbols (tested on Unix OS X)
+    :return: None
+    """
     print("\n"*2)
     print(u'\u2661 \u2667 \u2664 \u2662 '*12)
     print(" "*32 + "B L A C K J A C K")
@@ -16,6 +20,10 @@ def disp_header():
     print("\n"*2)
 
 def disp_instruct():
+    """
+    Prints a summary of game instructions.
+    :return: None
+    """
     
     
     instr = u"""

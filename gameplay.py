@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Sun Apr 28 13:03:22 2019
-
-@author: juanerolon
+@Juan E. Rolon
+https://github.com/juanerolon
 """
 
 
@@ -12,8 +11,24 @@ from player import Player
 from dealer import Dealer
 
 class Blackjack():
+    """
+    Defines a Blackjack game object, attributes and methods that control the
+    main decisions and dynamics of the game.
+    """
     
     def __init__(self):
+        """
+        Constructor initializes:
+        gD: instantiates a Deck object
+        P1: instantiates a Player object
+        Dl: instantiates a Dealer object
+        roundFlag: boolean flag controlling the state of a while loop during each round
+        gameFlag: boolean flag control the global state of the game; if False game
+         is stopped prior termination of the program
+         pwins: counts the number of wins during game
+         ngames: counts the number of games played
+         ties: counts the numbe of ties occurrences
+        """
         
         self.gD = Deck()
         self.P1 = Player()
@@ -31,6 +46,12 @@ class Blackjack():
     #--X--
     
     def get_amount(self):
+        """
+        Returns the amount being betted by player
+        Ensures user input is a number; also cleans input
+        amt: is the amount being betted
+        :return: amt
+        """
         fx=True
         while fx:
             amt = input("Enter amount: ").strip().replace(" ", "")
@@ -43,6 +64,12 @@ class Blackjack():
         return amt
     
     def make_bets(self):
+        """
+        Excecutes the different methods involved in betting process.
+        Verifies and cleans user inputs and allows user to terminate game,
+        if desired. Prevents making a bet if Player lacks enough funds.
+        :return: None
+        """
         
         flag = True
         while flag:
@@ -83,6 +110,12 @@ class Blackjack():
     #--X--
     
     def deal(self):
+        """
+        Controls de process in which the Dealer deals the first cards on the table.
+        Allows to proceed with the deal or cancel the game.
+        The game can be terminated if Player gets 21 on first deal
+        :return: None
+        """
         
         flag = True
         while flag:
@@ -93,7 +126,9 @@ class Blackjack():
                 self.Dl.update_hand(self.gD.draw_card())
                 self.Dl.update_hand(self.gD.draw_card())
                 self.P1.update_hand(self.gD.draw_card())
-                self.P1.update_hand(self.gD.draw_card())             
+                self.P1.update_hand(self.gD.draw_card())
+                # the card being shown is chosen randomly by the getFace_up_card method
+                # the actual dealers hand and value are not affected
                 face_up_card = self.Dl.getFace_up_card()
                 print("")
                 print("Dealer's hand (one card face-up): {}".format(face_up_card))
@@ -132,6 +167,19 @@ class Blackjack():
     #--X--
             
     def main_loop(self):
+        """
+        Controls the main dynamics of the game after Dealer has dealt the initial cards.
+        Considers all potential outcomes after Player stops hitting cards (stands) and after
+        Dealer stands according to its own fixed rules (note that after each card drawn by
+        Dealer, the algorith determines whether it can continue hitting or needs to stand)
+
+        These possible outcomes are:
+        1. Busting after hitting a card
+        2. Getting blackjack after hitting card
+        4. Getting a win or loss according to score comparison after Dealer stands
+        3. Getting a tie after both Dealer and Player stand
+        :return:
+        """
         flag = True
         fflo = True
         dealerDraws = 0
@@ -272,6 +320,8 @@ class Blackjack():
                         self.ngmes_ct +=1
                         break                        
                     else:
+                        #This condition is a left over from testing; not sure if it will ever
+                        #be reached.
                         print("Unknown condition")
                         self.ngmes_ct +=1
                         break

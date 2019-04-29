@@ -9,7 +9,7 @@ https://github.com/juanerolon
 import random
 class Dealer:
     """
-    Implements a Dealers object for a blackjack game.
+    Defines a Dealers object for a blackjack game.
     Class member functions determine when dealer can continue
     hitting, how cards are dealt, updated and under which conditions
     dealer hits or gets blackjack
@@ -37,7 +37,8 @@ class Dealer:
         :return: None. Updates member attributes only.
 
         """
-        
+
+        # chekcs whether drawn card is an ace
         if card[2] == 11:
             self.ace_flag = True
             self.aces_ct +=1

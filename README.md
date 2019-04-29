@@ -13,6 +13,8 @@ https://github.com/juanerolon
 
 This is a demo project that implements the Casino game Blackjack using a Unix console interface. 
 
+Note: My initial (but deprecated) development repository is available at: https://github.com/juanerolon/old_blackjack_dev). This old repo contains earlier ideas and commits to the project. 
+
 ## Classes and modules:
 
 - `deck.py` : Defines a 52-card playing deck for use in card games like Blackjack. Contains methods creating the deck representation, how cards are drawn and randomly shuffled.

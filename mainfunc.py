@@ -1,13 +1,21 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Sun Apr 28 13:05:00 2019
+@Juan E. Rolon
+https://github.com/juanerolon
 
-@author: juanerolon
+
+Main driver program:
+Defines and controls the main interface to user.
+Allows user to continue playing rounds of games if he/she has enough funds.
+Displays game stats after all rounds are completed.
 """
 
-import os
 
+#import classes and functions from the modules contained in development folder
+#or repository:
+
+import os
 from disp_intro import disp_header, disp_instruct
 from gameplay import Blackjack
 
@@ -23,7 +31,8 @@ if __name__ == "__main__":
    disp_header()
     
    bgame = Blackjack()
-   
+
+   #mimics the main event loop based on user keyboard input
    while bgame.gameFlag:
            
        print("Your balance is : {}".format(bgame.P1.get_balance())) 

@@ -22,13 +22,13 @@ class Dealer:
         hand: list containing cards
         hand_ct: counts cards in hand
         aces_ct: counts aces in hand
-        ace_flag: is True when hand contains an ace
+        
         """
         self.hand_value = 0
         self.hand = []
         self.hand_ct = 0
         self.aces_ct =0
-        self.ace_flag = False
+        
                
     def update_hand(self, card):
         """
@@ -40,7 +40,7 @@ class Dealer:
 
         # chekcs whether drawn card is an ace
         if card[2] == 11:
-            self.ace_flag = True
+           
             self.aces_ct +=1
             
         self.hand.append(card)
@@ -48,8 +48,9 @@ class Dealer:
 
         #determine below whether an ace in hand can be useful in case
         #dealer busts.
-        if self.hand_value > 21 and self.ace_flag:
+        if self.hand_value > 21 and self.aces_ct > 0:
             self.hand_value = self.hand_value - 10
+            self.aces_ct -= 1
             print("Dealer got soft hand")
             
         self.hand_ct +=1
@@ -72,7 +73,7 @@ class Dealer:
         self.hand_value = 0
         self.hand_ct = 0
         self.aces_ct = 0
-        self.ace_flag = False
+        
         
     def can_hit(self):
         """

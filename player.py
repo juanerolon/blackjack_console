@@ -23,7 +23,7 @@ class Player:
         hand: list containing cards
         hand_ct: counts cards in hand
         aces_ct: counts aces in hand
-        ace_flag: is True when hand contains an ace
+        
         sysbet: Private attribute instantiates a Bet object
         """
         
@@ -31,7 +31,7 @@ class Player:
         self.hand = []
         self.hand_ct = 0
         self.aces_ct = 0
-        self.ace_flag = False
+     
         self.__sysbet = Bet()
         
     
@@ -70,7 +70,7 @@ class Player:
 
         #chekcs whether drawn card is an ace
         if card[2] == 11:
-            self.ace_flag = True
+            
             self.aces_ct +=1
 
         #updates hand value
@@ -79,9 +79,9 @@ class Player:
 
         #determine below whether an ace in hand can be useful in case
         #dealer busts.
-        if self.hand_value > 21 and self.ace_flag:
+        if self.hand_value > 21 and self.aces_ct > 0:
             self.hand_value = self.hand_value - 10
-            self.ace_flag = False
+            self.aces_ct -= 1
             print("Player got a soft hand")
             
         self.hand_ct +=1
@@ -115,5 +115,5 @@ class Player:
         self.hand_value = 0
         self.hand_ct = 0
         self.aces_ct = 0
-        self.ace_flag = False
+        
         
